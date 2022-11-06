@@ -1,14 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ButtonGradient } from "../../components/buttons/ButtonGradient";
-import { ButtonGradientOutline } from "../../components/buttons/ButtonGradientOutline";
 import { EmailInput } from "../../components/inputs/EmailInput";
 import { PasswordInput } from "../../components/inputs/PasswordInput";
 import { UserInput } from "../../components/inputs/UserInput";
 import { AuthTemplate } from "../template/AuthTemplate";
-import imgUrl from '../../assets/img/calendar-auth-logo.png'
+import imgUrl from "../../assets/img/calendar-auth-logo.png";
+import { useForm } from "../../hooks/useForm";
+import { useAuthStore } from "../../hooks/store/useAuthStore";
+
+const formFields = {
+  username: "",
+  email: "",
+  password1: "",
+  password2: "",
+};
 
 export const RegisterView = () => {
+  // manejador from formFields
+  const {
+    username,
+    email,
+    password1,
+    password2,
+    onInputChange,
+    isFormValid,
+    formState,
+  } = useForm(formFields);
+
+  // hook (useAuthStore)
+  const { startRegister, errorMessage } = useAuthStore();
+
+  // onSubmit register form
+  const onRegisterForm = (event) => {
+    event.preventDefault();
+    startRegister({
+      username: username,
+      email: email,
+      password1: password1,
+      password2: password2,
+    });
+  };
+
   return (
     <AuthTemplate>
       <img
@@ -16,21 +49,89 @@ export const RegisterView = () => {
         src={imgUrl}
         alt="logo"
       />
-      <div className="flex flex-col w-full sm:w-3/5 justify-center items-center p-4">
+      <form
+        onSubmit={onRegisterForm}
+        className="flex flex-col w-full sm:w-3/5 justify-center items-center p-4"
+      >
         <h5 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-white text-center sm:text-left max-w-xs w-full">
           Sign up!
         </h5>
 
-        {/* user */}
-        <UserInput />
-        {/* input email */}
-        <EmailInput />
+        <article className="w-full grid grid-cols-1 max-w-xs gap-y-4">
+          {/* errors general */}
+          {errorMessage !== undefined && errorMessage.errors !== undefined && (
+            <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+              {errorMessage.errors}
+            </p>
+          )}
 
-        {/* input password */}
-        <PasswordInput />
+          {/* user */}
+          <div>
+            <UserInput
+              id="username"
+              name="username"
+              value={username}
+              onChange={onInputChange}
+            />
+            {errorMessage !== undefined &&
+              errorMessage.username !== undefined && (
+                <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                  {errorMessage.username}
+                </p>
+              )}
+          </div>
+
+          {/* input email */}
+          <div>
+            <EmailInput
+              id="email"
+              name="email"
+              value={email}
+              onChange={onInputChange}
+            />
+            {errorMessage !== undefined && errorMessage.email !== undefined && (
+              <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                {errorMessage.email}
+              </p>
+            )}
+          </div>
+
+          {/* input password */}
+          <div>
+            <PasswordInput
+              id="password1"
+              name="password1"
+              value={password1}
+              onChange={onInputChange}
+            />
+            {errorMessage !== undefined &&
+              errorMessage.password1 !== undefined && (
+                <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                  {errorMessage.password1}
+                </p>
+              )}
+          </div>
+
+          {/* input password2 */}
+          <div>
+            <PasswordInput
+              id="password2"
+              name="password2"
+              value={password2}
+              onChange={onInputChange}
+              placeholder="Confirm Password"
+            />
+            {errorMessage !== undefined &&
+              errorMessage.password2 !== undefined && (
+                <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                  {errorMessage.password2}
+                </p>
+              )}
+          </div>
+        </article>
 
         {/* link auth/login */}
-        <div className="w-full max-w-xs text-right -mt-3 mb-6">
+        <div className="w-full max-w-xs text-right mb-6">
           <Link
             to={"/auth/login"}
             className="text-sky-600 hover:text-white focus:text-white hover:bg-sky-600 focus:bg-sky-600 rounded-md px-2 py-1 font-bold transition-colors"
@@ -40,8 +141,8 @@ export const RegisterView = () => {
         </div>
 
         {/* login button */}
-        <ButtonGradient buttonText={"Register"} />
-      </div>
+        <ButtonGradient buttonText={"Register"} action={() => {}} />
+      </form>
 
       <img
         className="hidden sm:block object-cover w-2/5 rounded-lg"

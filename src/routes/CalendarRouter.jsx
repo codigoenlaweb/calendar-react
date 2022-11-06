@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { CalendarView } from "../calendar";
+import { useAuthStore } from "../hooks";
 
 export const CalendarRouter = () => {
-  const stateAuth = "authenticated";
-  const navigate = useNavigate();
+  const { status } = useAuthStore() // (hook) useAuthStore
+  const navigate = useNavigate();   // (hook) useNavigate
+
   useEffect(() => {
-    stateAuth === "not-authenticated" && navigate("/auth/login");
-  }, []);
+    status === "not-authenticated" && navigate("/auth/login");
+  }, [status]);
 
   return (
     <Routes>

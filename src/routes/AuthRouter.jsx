@@ -1,13 +1,16 @@
 import React, { useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { LoginView, RegisterView } from "../auth";
+import { useAuthStore } from "../hooks/store/useAuthStore";
 
 export const AuthRouter = () => {
-  const stateAuth = "not-authenticated";
-  const navigate = useNavigate();
+  const { status } = useAuthStore() // (hook) useAuthStore
+  const navigate = useNavigate();   // (hook) useNavigate
+
+
   useEffect(() => {
-    stateAuth === "authenticated" && navigate("/");
-  }, []);
+    status === "authenticated" && navigate("/");
+  }, [status]);
 
   return (
     <Routes>

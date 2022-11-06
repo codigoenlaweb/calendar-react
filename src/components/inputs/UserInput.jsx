@@ -1,8 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export const UserInput = () => {
+export const UserInput = ({
+  id,
+  name,
+  value,
+  onChange,
+  placeholder = "User",
+}) => {
   return (
-    <div className="relative mb-3 w-full max-w-xs">
+    <div className="relative w-full">
       <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
         <svg
           className="w-6 h-6 fill-gray-500 dark:fill-gray-400"
@@ -15,10 +22,21 @@ export const UserInput = () => {
       </div>
       <input
         type="text"
-        id="input-group-1"
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
         className="bg-gray-50 border border-gray-300 outline-none focus:ring-2 focus:ring-opacity-20 focus:ring-blue-500 focus:border-blue-400 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-        placeholder="User"
+        placeholder={placeholder}
       />
     </div>
   );
+};
+
+UserInput.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  value: PropTypes.string.isRequired,
 };

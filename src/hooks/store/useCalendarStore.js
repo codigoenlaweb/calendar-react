@@ -4,8 +4,6 @@ import { onAddNewEvent, onDeletedEvent, onSetActiveEvent, onUpdateEvent } from "
 export const useCalendarStore = () => {
   // propiedades
   const { events, activeEvent } = useSelector((state) => state.calendar);
-
-  // hooks
   const dispatch = useDispatch();
 
   // metodos
