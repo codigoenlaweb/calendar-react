@@ -9,12 +9,12 @@ export const FabAddNew = () => {
   const onOpenDateModal = () => {
     setActiveEvent({
       title: "",
-      notes: "",
+      note: "",
       start: NaN,
       end: NaN,
       bgColor: "#fafafa",
       user: {
-        _id: 123,
+        id: 123,
         name: "jesus",
       },
     });

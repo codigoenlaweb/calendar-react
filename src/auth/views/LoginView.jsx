@@ -16,10 +16,10 @@ const formFields = {
 
 export const LoginView = () => {
   // manejador from formFields
-  const { email, password, onInputChange, isFormValid, formState } =
+  const { email, password, onInputChange, validationErrors } =
     useForm(formFields);
   // hook (useAuthStore)
-  const { startLogin, errorMessage } = useAuthStore();
+  const { startLogin } = useAuthStore();
 
   // onSubmit for login
   const onLoginSubmit = (event) => {
@@ -45,9 +45,9 @@ export const LoginView = () => {
         </h5>
         <article className="w-full grid grid-cols-1 max-w-xs gap-y-4">
           {/* errors general */}
-          {errorMessage !== undefined && errorMessage.errors !== undefined && (
+          {validationErrors !== undefined && validationErrors.errors !== undefined && (
             <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-              {errorMessage.errors}
+              {validationErrors.errors}
             </p>
           )}
 
@@ -59,9 +59,9 @@ export const LoginView = () => {
               value={email}
               onChange={onInputChange}
             />
-            {errorMessage !== undefined && errorMessage.email !== undefined && (
+            {validationErrors !== undefined && validationErrors.email !== undefined && (
               <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                {errorMessage.email}
+                {validationErrors.email}
               </p>
             )}
           </div>
@@ -74,10 +74,10 @@ export const LoginView = () => {
               value={password}
               onChange={onInputChange}
             />
-            {errorMessage !== undefined &&
-              errorMessage.password !== undefined && (
+            {validationErrors !== undefined &&
+              validationErrors.password !== undefined && (
                 <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                  {errorMessage.password}
+                  {validationErrors.password}
                 </p>
               )}
           </div>

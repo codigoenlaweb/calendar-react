@@ -1,7 +1,15 @@
 import React from "react";
 import { ButtonRedOutline } from "../../components/buttons/ButtonRedOutline";
+import { useAuthStore } from "../../hooks/store/useAuthStore";
+
 
 export const Navbar = () => {
+  const {user, starLogout} = useAuthStore()
+
+  const onLogout = async () => {
+    starLogout();
+  }
+
   return (
     <nav className="p-3 bg-gray-100 rounded border-gray-200 dark:bg-gray-800 dark:border-gray-700 mb-5">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -22,7 +30,7 @@ export const Navbar = () => {
             </g>
           </svg>
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white ml-1">
-            JESUS OLMOS
+            {user.username}
           </span>
         </a>
         <button
@@ -53,6 +61,7 @@ export const Navbar = () => {
               <ButtonRedOutline
                 className="ml-2"
                 buttonText="Logout"
+                action={onLogout}
                 icon={() => (
                   <svg
                     className="w-4 h-4"

@@ -1,9 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { onCloseDateModal, onOpenDateModal } from '../../store';
+import { onClearErrorMessage, onCloseDateModal, onOpenDateModal } from '../../store';
+import { useAuthStore } from './useAuthStore';
 
 export const useUiStore = () => {
     // propiedades
     const {isDateModalOpen} = useSelector((state) => state.ui)
+    const { clearErrorMessage } = useAuthStore()
     const dispatch = useDispatch()
 
     // metodos

@@ -24,12 +24,11 @@ export const RegisterView = () => {
     password1,
     password2,
     onInputChange,
-    isFormValid,
-    formState,
+    validationErrors,
   } = useForm(formFields);
 
   // hook (useAuthStore)
-  const { startRegister, errorMessage } = useAuthStore();
+  const { startRegister } = useAuthStore();
 
   // onSubmit register form
   const onRegisterForm = (event) => {
@@ -59,11 +58,12 @@ export const RegisterView = () => {
 
         <article className="w-full grid grid-cols-1 max-w-xs gap-y-4">
           {/* errors general */}
-          {errorMessage !== undefined && errorMessage.errors !== undefined && (
-            <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-              {errorMessage.errors}
-            </p>
-          )}
+          {validationErrors !== undefined &&
+            validationErrors.errors !== undefined && (
+              <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                {validationErrors.errors}
+              </p>
+            )}
 
           {/* user */}
           <div>
@@ -73,10 +73,10 @@ export const RegisterView = () => {
               value={username}
               onChange={onInputChange}
             />
-            {errorMessage !== undefined &&
-              errorMessage.username !== undefined && (
+            {validationErrors !== undefined &&
+              validationErrors.username !== undefined && (
                 <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                  {errorMessage.username}
+                  {validationErrors.username}
                 </p>
               )}
           </div>
@@ -89,11 +89,12 @@ export const RegisterView = () => {
               value={email}
               onChange={onInputChange}
             />
-            {errorMessage !== undefined && errorMessage.email !== undefined && (
-              <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                {errorMessage.email}
-              </p>
-            )}
+            {validationErrors !== undefined &&
+              validationErrors.email !== undefined && (
+                <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
+                  {validationErrors.email}
+                </p>
+              )}
           </div>
 
           {/* input password */}
@@ -104,10 +105,10 @@ export const RegisterView = () => {
               value={password1}
               onChange={onInputChange}
             />
-            {errorMessage !== undefined &&
-              errorMessage.password1 !== undefined && (
+            {validationErrors !== undefined &&
+              validationErrors.password1 !== undefined && (
                 <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                  {errorMessage.password1}
+                  {validationErrors.password1}
                 </p>
               )}
           </div>
@@ -121,10 +122,10 @@ export const RegisterView = () => {
               onChange={onInputChange}
               placeholder="Confirm Password"
             />
-            {errorMessage !== undefined &&
-              errorMessage.password2 !== undefined && (
+            {validationErrors !== undefined &&
+              validationErrors.password2 !== undefined && (
                 <p className=" w-full px-2 py-2 mt-1 bg-red-100 border border-solid border-red-600 text-red-600 rounded">
-                  {errorMessage.password2}
+                  {validationErrors.password2}
                 </p>
               )}
           </div>

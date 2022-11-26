@@ -5,9 +5,11 @@ import { useCalendarStore } from "../../../hooks";
 export const FabDeleted = () => {
 
   const { startdeletingEvent } = useCalendarStore();
-  const handleDelete = () => {
+
+  const handleDelete = async () => {
     startdeletingEvent()
   };
+
   return (
     <div
       onClick={handleDelete}

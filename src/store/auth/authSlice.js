@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   access_token: "",
-  refresh_token: "",
-  status: "not-authenticated", // checkin, authenticated, not-authenticated
+  status: "checking", // checking, authenticated, not-authenticated
   errorMessage: undefined,
-  sendEmailRegister: false,
   user: {
     // id: null,
     // email: "",
     // username: "",
   },
+  events: []
 };
 
 export const authSlice = createSlice({
@@ -24,18 +23,14 @@ export const authSlice = createSlice({
     onLogin: (state, { payload }) => {
       state.status = "authenticated";
       state.user = payload.user;
+      state.events = payload.events;
       state.access_token = payload.access_token;
-      state.refresh_token = payload.refresh_token;
       state.errorMessage = undefined;
-    },
-    onRegister: (state, { payload }) => {
-      state.sendEmailRegister = true;
     },
     onLogout: (state, { payload }) => {
       state.status = "not-authenticated";
       state.user = {};
       state.access_token = "";
-      state.refresh_token = "";
       state.errorMessage = payload.errorMessage
         ? payload.errorMessage
         : undefined;
@@ -43,7 +38,13 @@ export const authSlice = createSlice({
     onClearErrorMessage: (state, { payload }) => {
       state.errorMessage = undefined;
     },
+    
+    onErrorMessage: (state, { payload }) => {
+      state.errorMessage = payload.errorMessage
+        ? payload.errorMessage
+        : undefined;
+    },
   },
 });
 // Action creators are generated for each case reducer function
-export const { onChecking, onLogin, onLogout, onClearErrorMessage, onRegister } = authSlice.actions;
+export const { onChecking, onLogin, onLogout, onClearErrorMessage, onErrorMessage } = authSlice.actions;
