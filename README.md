@@ -1,10 +1,10 @@
 <h1 align="center">Journal App</h1> 
 
-![View project](https://github.com/codigoenlaweb/journal-App/blob/master/public/journal-app.jpeg)
+[![View project](View project "View project")](https://github.com/codigoenlaweb/calendar-react/blob/main/src/assets/img/Screenshot%20from%202023-01-03%2000-47-29.png "View project")
 
 <h4 align="center">Your website to organize your daily events</h4>
 <div align="center">
-    <a align="center" href="https://react-app-journal.netlify.app/">View Demo</a>
+    <a align="center" href="https://rt-calendar.netlify.app/">View Demo</a>
 </div>
 
 ## Table of Contents:
@@ -15,7 +15,7 @@
 
 ## About The Project.
 #### Description
-**Calendar React** es un **SPA** donde puedes gestionar tus eventos del dia, semana o mes y con poder **crear, editar y borrar** todos sus eventos, y no solo que este **SPA** cuenta con un sistema de autenticacion de **verificacion de email** y envio de email
+**Calendar React** is a **SPA** where you can manage your events of the day, week or month and with the power to **create, edit and delete** all your events, and not just this **SPA** It has an authentication system of **verification of email** and sending of email
 #### Purpose of this project.
 The purpose of this project is to test all the **knowledge learned** about the domain and its management, in addition to implementing various types of requests to an api created for **Calendar React**, error handling and the use of tools both **Axios** and **Redux toolkit** just to mention a few of them.
 #### Built with.
