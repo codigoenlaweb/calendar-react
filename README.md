@@ -1,6 +1,6 @@
 <h1 align="center">Journal App</h1> 
 
-[![View project](View project "View project")](https://github.com/codigoenlaweb/calendar-react/blob/main/src/assets/img/Screenshot%20from%202023-01-03%2000-47-29.png "View project")
+![View project](https://github.com/codigoenlaweb/calendar-react/blob/main/src/assets/img/Screenshot%20from%202023-01-03%2000-47-29.png)
 
 <h4 align="center">Your website to organize your daily events</h4>
 <div align="center">
